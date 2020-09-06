@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.8...3.15)
 project (mak LANGUAGES CXX)
 
 set (_VERSION_MAJOR 0)
-set (_VERSION_MINOR 1)
-set (_VERSION_REVISION 0)
+set (_VERSION_MINOR 0)
+set (_VERSION_REVISION 1)
 
 configure_file (
   "${PROJECT_SOURCE_DIR}/source/version.h.in"
