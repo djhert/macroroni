@@ -6,11 +6,16 @@ makWindow::makWindow(const wxString &title) :
 	SetIcon(wxICON(macroroni_128));
 
 	wxMenu *fileMenu = new wxMenu;
-	fileMenu->Append(wxID_EXIT, "Exit");
+	fileMenu->Append(wxID_NEW, "&New", "&New blank file");
+	fileMenu->Append(wxID_OPEN, "&Open", "&Open MaK file");
+	fileMenu->Append(wxID_SAVE, "&Save", "&Save file as ~/.mak");
+	fileMenu->AppendSeparator();
+	fileMenu->Append(wxID_EXIT, "&Exit");
 
 	wxMenu *helpMenu = new wxMenu;
-	helpMenu->Append(wxID_HELP, "Help");
-	helpMenu->Append(wxID_ABOUT, "About");
+	helpMenu->Append(wxID_HELP, "&Help");
+	helpMenu->AppendSeparator();
+	helpMenu->Append(wxID_ABOUT, "&About");
 
 	wxMenuBar *menuBar = new wxMenuBar();
 	menuBar->Append(fileMenu, "&File");
@@ -19,18 +24,30 @@ makWindow::makWindow(const wxString &title) :
 }
 
 wxBEGIN_EVENT_TABLE(makWindow, wxFrame)
-		EVT_MENU(wxID_EXIT, makWindow::OnQuit)
-				EVT_MENU(wxID_ABOUT, makWindow::OnAbout)
-						EVT_MENU(wxID_HELP, makWindow::OnHelp)
-							wxEND_EVENT_TABLE();
+		EVT_MENU(wxID_OPEN, makWindow::OnOpen)
+				EVT_MENU(wxID_EXIT, makWindow::OnQuit)
+						EVT_MENU(wxID_ABOUT, makWindow::OnAbout)
+								EVT_MENU(wxID_HELP, makWindow::OnHelp)
+										wxEND_EVENT_TABLE();
+
+void makWindow::OnOpen(wxCommandEvent &WXUNUSED(event)) {
+	wxFileDialog *dg = new wxFileDialog(this, _("Choose a file"),
+			wxEmptyString, wxEmptyString, wxEmptyString,
+			wxFD_OPEN, wxDefaultPosition);
+
+	if (dg->ShowModal() == wxID_OK) {
+		wxString doc = dg->GetPath();
+		SetTitle(wxString("Macroroni and Keys - ") << dg->GetFilename());
+	}
+	dg->Destroy();
+}
 
 void makWindow::OnQuit(wxCommandEvent &WXUNUSED(event)) {
 	Close(true);
 }
 
 void makWindow::OnAbout(wxCommandEvent &WXUNUSED(event)) {
-	mAbout *abt = new mAbout(new wxBitmap(macroroni_128_xpm), this, "About MaK");
-	abt->Show(true);
+	new mAbout(new wxBitmap(macroroni_128_xpm), this, "About MaK");
 }
 
 void makWindow::OnHelp(wxCommandEvent &WXUNUSED(event)) {

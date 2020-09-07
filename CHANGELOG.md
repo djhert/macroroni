@@ -1,6 +1,10 @@
 # Changelog
 
-### v0.0.3 - 08-06-2020
+### v0.0.4 - 08/07/2020
+- About menu v1 complete
+- Added options to menu
+
+### v0.0.3 - 08/06/2020
 - Updated CMakeLists.txt to build on Windows
 - Fixed Memory Leak in About dialog
 

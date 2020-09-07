@@ -24,12 +24,17 @@ private:
 class mAbout : public wxDialog {
 public:
 	mAbout(wxBitmap *bmp, wxWindow *parent, const wxString &title, int id = -1,
-			wxPoint pos = wxDefaultPosition, wxSize size = wxDefaultSize,
+			wxPoint pos = wxDefaultPosition, wxSize size = wxSize(400, 275),
 			int style = wxDEFAULT_DIALOG_STYLE);
 	~mAbout();
 
+	void OnClose(wxCommandEvent &event);
+
 protected:
 	mImage *_image;
+
+private:
+	DECLARE_EVENT_TABLE()
 };
 
 #endif

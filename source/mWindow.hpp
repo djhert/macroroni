@@ -13,6 +13,7 @@ class makWindow : public wxFrame {
 public:
 	makWindow(const wxString &title);
 
+	void OnOpen(wxCommandEvent &event);
 	void OnQuit(wxCommandEvent &event);
 	void OnAbout(wxCommandEvent &event);
 	void OnHelp(wxCommandEvent &event);
