@@ -7,9 +7,7 @@
 
 #include "mAbout.hpp"
 
-#ifndef wxHAS_IMAGES_IN_RESOURCES
 #include "res/macroroni_128.xpm"
-#endif
 
 class makWindow : public wxFrame {
 public:

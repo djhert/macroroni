@@ -22,7 +22,7 @@ wxBEGIN_EVENT_TABLE(makWindow, wxFrame)
 		EVT_MENU(wxID_EXIT, makWindow::OnQuit)
 				EVT_MENU(wxID_ABOUT, makWindow::OnAbout)
 						EVT_MENU(wxID_HELP, makWindow::OnHelp)
-								wxEND_EVENT_TABLE();
+							wxEND_EVENT_TABLE();
 
 void makWindow::OnQuit(wxCommandEvent &WXUNUSED(event)) {
 	Close(true);

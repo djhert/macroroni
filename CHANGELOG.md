@@ -1,5 +1,9 @@
 # Changelog
 
+### v0.0.3 - 08-06-2020
+- Updated CMakeLists.txt to build on Windows
+- Fixed Memory Leak in About dialog
+
 ### v0.0.2 - 08/06/2020
 - Custom About dialog started
 - Fixed Header Guards

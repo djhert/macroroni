@@ -5,6 +5,10 @@ mImage::mImage(wxWindow *parent, wxWindowID id,
 		long style, const wxString &name) :
 		wxPanel(parent, id, pos, size, style, name) {}
 
+mImage::~mImage() {
+	delete _bitmap;
+}
+
 BEGIN_EVENT_TABLE(mImage, wxPanel)
 EVT_PAINT(mImage::OnPaint)
 END_EVENT_TABLE()
@@ -26,4 +30,8 @@ mAbout::mAbout(wxBitmap *bmp, wxWindow *parent, const wxString &title, int id,
 		wxDialog(parent, id, title, pos, size, style) {
 	_image = new mImage(this, wxID_ANY);
 	_image->SetBitmap(bmp);
+}
+
+mAbout::~mAbout() {
+	delete _image;
 }
