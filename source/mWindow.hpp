@@ -1,16 +1,14 @@
-#ifndef _mWindow_HPP_
+#ifndef _mWINDOW_HPP_
 #define _mWINDOW_HPP_
 
-#include "wx/wxprec.h"
-
-#ifndef WX_PRECOMP
 #include "wx/wx.h"
-#endif
 
 #include "version.h"
 
+#include "mAbout.hpp"
+
 #ifndef wxHAS_IMAGES_IN_RESOURCES
-#include "../res/macroroni_128.xpm"
+#include "res/macroroni_128.xpm"
 #endif
 
 class makWindow : public wxFrame {

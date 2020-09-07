@@ -29,16 +29,8 @@ void makWindow::OnQuit(wxCommandEvent &WXUNUSED(event)) {
 }
 
 void makWindow::OnAbout(wxCommandEvent &WXUNUSED(event)) {
-	wxMessageBox(wxString::Format(
-						 "Macroroni and Keys v%s\n"
-						 "A cross-platform text expander\n\n"
-						 "Copyright: David Hertenstein (hlfstr) 2020\n\n"
-						 "Running on: %s.",
-						 _VERSION_STRING,
-						 wxGetOsDescription()),
-			"About MaK",
-			wxOK | wxICON_INFORMATION,
-			this);
+	mAbout *abt = new mAbout(new wxBitmap(macroroni_128_xpm), this, "About MaK");
+	abt->Show(true);
 }
 
 void makWindow::OnHelp(wxCommandEvent &WXUNUSED(event)) {

@@ -1,5 +1,5 @@
 # Macroroni and Keys 
-![macroroni](https://raw.githubusercontent.com/hlfstr/macroroni/master/res/macroroni_128.png)
+![macroroni](https://raw.githubusercontent.com/hlfstr/macroroni/master/art/macroroni_128.png)
 
 This is a cross-platform text expansion program written in C++ for modern systems.  
 
