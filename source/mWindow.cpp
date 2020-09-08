@@ -23,12 +23,17 @@ makWindow::makWindow(const wxString &title) :
 	SetMenuBar(menuBar);
 }
 
+void makWindow::_setTray(mTray *t) {
+	_tray = t;
+}
+
 wxBEGIN_EVENT_TABLE(makWindow, wxFrame)
-		EVT_MENU(wxID_OPEN, makWindow::OnOpen)
-				EVT_MENU(wxID_EXIT, makWindow::OnQuit)
-						EVT_MENU(wxID_ABOUT, makWindow::OnAbout)
-								EVT_MENU(wxID_HELP, makWindow::OnHelp)
-										wxEND_EVENT_TABLE();
+		EVT_CLOSE(makWindow::OnCloseWindow)
+				EVT_MENU(wxID_OPEN, makWindow::OnOpen)
+						EVT_MENU(wxID_EXIT, makWindow::OnQuit)
+								EVT_MENU(wxID_ABOUT, makWindow::OnAbout)
+										EVT_MENU(wxID_HELP, makWindow::OnHelp)
+												wxEND_EVENT_TABLE();
 
 void makWindow::OnOpen(wxCommandEvent &WXUNUSED(event)) {
 	wxFileDialog *dg = new wxFileDialog(this, _("Choose a file"),
@@ -42,8 +47,8 @@ void makWindow::OnOpen(wxCommandEvent &WXUNUSED(event)) {
 	dg->Destroy();
 }
 
-void makWindow::OnQuit(wxCommandEvent &WXUNUSED(event)) {
-	Close(true);
+void makWindow::OnQuit(wxCommandEvent &event) {
+	_tray->OnQuit(event);
 }
 
 void makWindow::OnAbout(wxCommandEvent &WXUNUSED(event)) {
@@ -52,4 +57,8 @@ void makWindow::OnAbout(wxCommandEvent &WXUNUSED(event)) {
 
 void makWindow::OnHelp(wxCommandEvent &WXUNUSED(event)) {
 	wxLaunchDefaultBrowser("https://github.com/hlfstr/macroroni", wxBROWSER_NOBUSYCURSOR);
+}
+
+void makWindow::OnCloseWindow(wxCloseEvent &WXUNUSED(event)) {
+	Show(false);
 }

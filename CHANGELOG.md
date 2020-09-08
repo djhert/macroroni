@@ -1,5 +1,9 @@
 # Changelog
 
+### v0.0.5 - 08/08/2020
+- Added Tray Icon
+- Application now controlled via System Tray
+
 ### v0.0.4 - 08/07/2020
 - About menu v1 complete
 - Added options to menu

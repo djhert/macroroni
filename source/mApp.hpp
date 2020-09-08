@@ -3,7 +3,7 @@
 
 #include "wx/wx.h"
 
-#include "mWindow.hpp"
+#include "mTrayIcon.hpp"
 
 class mApp : public wxApp {
 public:
