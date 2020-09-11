@@ -23,10 +23,6 @@ makWindow::makWindow(const wxString &title) :
 	SetMenuBar(menuBar);
 }
 
-void makWindow::_setTray(mTray *t) {
-	_tray = t;
-}
-
 wxBEGIN_EVENT_TABLE(makWindow, wxFrame)
 		EVT_CLOSE(makWindow::OnCloseWindow)
 				EVT_MENU(wxID_OPEN, makWindow::OnOpen)
@@ -48,7 +44,7 @@ void makWindow::OnOpen(wxCommandEvent &WXUNUSED(event)) {
 }
 
 void makWindow::OnQuit(wxCommandEvent &event) {
-	_tray->OnQuit(event);
+	mApp::App()->Quit();
 }
 
 void makWindow::OnAbout(wxCommandEvent &WXUNUSED(event)) {

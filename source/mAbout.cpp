@@ -28,7 +28,7 @@ mAbout::mAbout(wxBitmap *bmp, wxWindow *parent, const wxString &title, int id,
 		wxPoint pos, wxSize size, int style) :
 		wxDialog(parent, id, title, pos, size, style) {
 
-	wxFont *font = new wxFont(wxFontInfo(16).Bold());
+	wxFont font = wxFont(wxFontInfo(16).Bold());
 
 	wxBoxSizer *vbox = new wxBoxSizer(wxVERTICAL);
 	wxBoxSizer *hbox = new wxBoxSizer(wxHORIZONTAL);
@@ -36,15 +36,13 @@ mAbout::mAbout(wxBitmap *bmp, wxWindow *parent, const wxString &title, int id,
 	_image->SetBitmap(bmp);
 
 	wxStaticText *label = new wxStaticText(this, -1, _("Macroroni and Keys"));
-	label->SetFont(*font);
+	label->SetFont(font);
 
 	hbox->Add(_image, wxSizerFlags().Proportion(1).Expand().Border(wxALL, 8));
 	vbox->Add(label, wxSizerFlags().Proportion(0).Border(wxLEFT | wxRIGHT, 8));
 	label = new wxStaticText(this, -1, wxString::Format(("Version: %s"), _VERSION_STRING));
-	font = new wxFont(wxFontInfo(8).Bold());
 	vbox->Add(label, wxSizerFlags().Proportion(0).Center());
 	label = new wxStaticText(this, -1, _("A Cross-Platform Text Expander"));
-	font = new wxFont(wxFontInfo(8).Bold());
 	vbox->Add(label, wxSizerFlags().Proportion(0).Center());
 	hbox->Add(vbox, wxSizerFlags().Proportion(0).Center().Border(wxUP, 8));
 

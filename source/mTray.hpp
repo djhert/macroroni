@@ -1,17 +1,18 @@
 #ifndef _mTRAYICON_HPP_
 #define _mTRAYICON_HPP_
 
-#include "res/macroroni_128.xpm"
+#include "res/macroroni_24.xpm"
 #include "wx/taskbar.h"
 #include "wx/wx.h"
 
-#include "mWindow.hpp"
+#include "mApp.hpp"
 
 class makWindow;
 
-class mTray : public wxTaskBarIcon {
+class makTray : public wxTaskBarIcon {
 public:
-	mTray(wxTaskBarIconType iconType = wxTBI_DEFAULT_TYPE);
+	makTray(wxTaskBarIconType iconType = wxTBI_DEFAULT_TYPE);
+	~makTray() = default;
 
 	void OnWindowClick(wxTaskBarIconEvent &event);
 
@@ -19,9 +20,6 @@ public:
 	void OnWindowShow(wxCommandEvent &event);
 
 	wxMenu *CreatePopupMenu() override;
-
-protected:
-	makWindow *mainWin;
 
 private:
 	wxDECLARE_EVENT_TABLE();
