@@ -15,12 +15,20 @@ bool mApp::OnInit() {
 	_instance = this;
 
 	Tray = new makTray();
+
+#if defined(__WXOSX__) && wxOSX_USE_COCOA
+	Dock = new makTray();
+#endif
+
 	MainWin = new makWindow("Macroroni and Keys");
 
 	return true;
 }
 
 void mApp::Quit() {
-	Tray->Destroy();
 	MainWin->Destroy();
+	Tray->Destroy();
+#if defined(__WXOSX__) && wxOSX_USE_COCOA
+	Dock->Destroy();
+#endif
 }

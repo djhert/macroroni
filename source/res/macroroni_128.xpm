@@ -1,7 +1,7 @@
 #ifndef _MACRORONI_128_XPM_
 #define _MACRORONI_128_XPM_
 /* XPM */
-static const char *macroroni_128_xpm[] = {
+static const char *const macroroni_128_xpm[] = {
 	/* columns rows colors chars-per-pixel */
 	"128 128 177 2 ",
 	"   c None",

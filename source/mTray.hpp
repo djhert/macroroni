@@ -1,7 +1,7 @@
 #ifndef _mTRAYICON_HPP_
 #define _mTRAYICON_HPP_
 
-#include "res/macroroni_24.xpm"
+#include "res/macroroni_32.xpm"
 #include "wx/taskbar.h"
 #include "wx/wx.h"
 

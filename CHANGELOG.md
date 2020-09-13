@@ -1,5 +1,18 @@
 # Changelog
 
+### v0.0.8 - 08/13/2020
+- Fixed Mac icons
+- Built main interface v1
+
+### v0.0.7 - 08/11/2020
+- Fixed Windows icons
+- Fixed some memory leaks
+
+### v0.0.6 - 08/10/2020
+- Brought main pointers to mApp for global access
+- Added Instance to mApp
+- Added 24 size image for Tray
+
 ### v0.0.5 - 08/08/2020
 - Added Tray Icon
 - Application now controlled via System Tray

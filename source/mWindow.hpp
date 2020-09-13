@@ -8,7 +8,10 @@
 #include "mAbout.hpp"
 #include "mApp.hpp"
 
+#include "res/add_22.xpm"
+#include "res/delete_22.xpm"
 #include "res/macroroni_128.xpm"
+#include "res/save_22.xpm"
 
 class makWindow : public wxFrame {
 public:
@@ -23,6 +26,9 @@ public:
 
 private:
 	wxDECLARE_EVENT_TABLE();
+	wxListBox *_macros;
+	wxTextCtrl *_tbox;
+	wxTextCtrl *_sbox;
 };
 
 #endif

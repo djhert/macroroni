@@ -18,6 +18,10 @@ public:
 	static mApp *App();
 
 	makTray *Tray;
+#if defined(__WXOSX__) && wxOSX_USE_COCOA
+	makTray *Dock;
+#endif
+
 	makWindow *MainWin;
 
 private:
