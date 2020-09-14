@@ -14,8 +14,7 @@ bool mApp::OnInit() {
 
 	_instance = this;
 
-	// Needed so Windows won't freak
-	MainWin = NULL;
+	MainWin = new makWindow("Macroroni and Keys");
 
 	Tray = new makTray();
 
@@ -27,10 +26,7 @@ bool mApp::OnInit() {
 }
 
 void mApp::Quit() {
-	if (MainWin) {
-		if (!MainWin->IsBeingDeleted())
-			MainWin->Destroy();
-	}
+	MainWin->Destroy();
 	Tray->Destroy();
 #if defined(__WXOSX__) && wxOSX_USE_COCOA
 	Dock->Destroy();

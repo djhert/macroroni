@@ -22,10 +22,6 @@ makWindow::makWindow(const wxString &title) :
 	menuBar->Append(helpMenu, "&Help");
 	SetMenuBar(menuBar);
 
-	wxArrayString str = wxArrayString();
-	for (int i = 0; i < 100; i++) {
-		str.Add(_(".macro" + std::to_string(i)));
-	}
 	// Final Window Sizer
 	wxBoxSizer *winSizer = new wxBoxSizer(wxHORIZONTAL);
 
@@ -53,7 +49,7 @@ makWindow::makWindow(const wxString &title) :
 	vbox->Add(hbox, wxSizerFlags().Proportion(0));
 	// List box
 	_macros = new wxListBox(this, 2000);
-	_macros->InsertItems(str, 0);
+
 	vbox->Add(_macros, wxSizerFlags().Proportion(1).Expand().Border(wxALL, 4));
 	// Finish Left
 	winSizer->Add(vbox, wxSizerFlags().Proportion(0).Expand().Border(wxALL, 4));
@@ -87,16 +83,21 @@ makWindow::makWindow(const wxString &title) :
 	// Finish Right
 	winSizer->Add(vbox, wxSizerFlags().Proportion(1).Expand().Border(wxALL, 4));
 	SetSizer(winSizer);
-	Show(true);
+}
+
+makWindow::~makWindow() {
+	_macros->Destroy();
+	_sbox->Destroy();
+	_tbox->Destroy();
 }
 
 wxBEGIN_EVENT_TABLE(makWindow, wxFrame)
 		EVT_CLOSE(makWindow::OnCloseWindow)
 				EVT_MENU(wxID_OPEN, makWindow::OnOpen)
 						EVT_MENU(wxID_EXIT, makWindow::OnQuit)
-										EVT_MENU(wxID_ABOUT, makWindow::OnAbout)
-												EVT_MENU(wxID_HELP, makWindow::OnHelp)
-														wxEND_EVENT_TABLE();
+								EVT_MENU(wxID_ABOUT, makWindow::OnAbout)
+										EVT_MENU(wxID_HELP, makWindow::OnHelp)
+												wxEND_EVENT_TABLE();
 
 void makWindow::OnOpen(wxCommandEvent &WXUNUSED(event)) {
 	wxFileDialog *dg = new wxFileDialog(this, _("Choose a file"),
@@ -123,5 +124,21 @@ void makWindow::OnHelp(wxCommandEvent &WXUNUSED(event)) {
 }
 
 void makWindow::OnCloseWindow(wxCloseEvent &WXUNUSED(event)) {
-	Destroy();
+	ShowWindow(false);
+}
+
+void makWindow::ShowWindow(const bool &show) {
+	if (show) {
+		wxArrayString str = wxArrayString();
+		for (int i = 0; i < 100; i++) {
+			str.Add(_(".macro" + std::to_string(i)));
+		}
+		_macros->InsertItems(str, 0);
+	} else {
+		_sbox->Clear();
+		_macros->DeselectAll();
+		_macros->Clear();
+		_tbox->Clear();
+	}
+	Show(show);
 }

@@ -1,5 +1,10 @@
 # Changelog
 
+### v0.0.10 - 08/14/2020
+- Reverted changes to Main Window due to wxWidgets not liking to destroy it
+  - Instead, list item and text boxes are cleared and rebuilt
+- Tray icons are 32 size now
+
 ### v0.0.9 - 08/14/2020
 - Fixed Windows Icons
 - Main Window is now created when shown, destroyed when hidden
