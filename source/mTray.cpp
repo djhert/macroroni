@@ -25,14 +25,26 @@ void makTray::OnQuit(wxCommandEvent &WXUNUSED(event)) {
 }
 
 void makTray::OnWindowShow(wxCommandEvent &WXUNUSED(event)) {
-	mApp::App()->MainWin->Show(!mApp::App()->MainWin->IsShown());
+	if (!mApp::App()->MainWin) {
+		mApp::App()->MainWin = new makWindow("Macroroni and Keys");
+		return;
+	}
+	if (mApp::App()->MainWin->IsBeingDeleted())
+		mApp::App()->MainWin = new makWindow("Macroroni and Keys");
+	else
+		mApp::App()->MainWin->Destroy();
 }
 
 wxMenu *makTray::CreatePopupMenu() {
 	wxMenu *menu = new wxMenu;
-	if (mApp::App()->MainWin->IsShown())
-		menu->Append(20, "&Hide Window");
-	else
+	// If pointer is valid
+	if (mApp::App()->MainWin) {
+		if (mApp::App()->MainWin->IsBeingDeleted()) {
+			menu->Append(20, "&Show Window");
+		} else {
+			menu->Append(20, "&Hide Window");
+		}
+	} else
 		menu->Append(20, "&Show Window");
 	menu->AppendSeparator();
 	menu->Append(wxID_EXIT, "&Exit");

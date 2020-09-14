@@ -17,16 +17,17 @@ bool mApp::OnInit() {
 	Tray = new makTray();
 
 #if defined(__WXOSX__) && wxOSX_USE_COCOA
-	Dock = new makTray();
+	Dock = new makTray(wxTBI_DOCK);
 #endif
-
-	MainWin = new makWindow("Macroroni and Keys");
 
 	return true;
 }
 
 void mApp::Quit() {
-	MainWin->Destroy();
+	if (MainWin) {
+		if (!MainWin->IsBeingDeleted())
+			MainWin->Destroy();
+	}
 	Tray->Destroy();
 #if defined(__WXOSX__) && wxOSX_USE_COCOA
 	Dock->Destroy();
