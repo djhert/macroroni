@@ -10,8 +10,6 @@ makWindow::makWindow(const wxString &title) :
 	fileMenu->Append(wxID_OPEN, "&Open", "&Open MaK file");
 	fileMenu->Append(wxID_SAVE, "&Save", "&Save file as ~/.mak");
 	fileMenu->AppendSeparator();
-	fileMenu->Append(wxID_CLOSE, "&Close");
-	fileMenu->AppendSeparator();
 	fileMenu->Append(wxID_EXIT, "&Exit");
 
 	wxMenu *helpMenu = new wxMenu;
@@ -96,7 +94,6 @@ wxBEGIN_EVENT_TABLE(makWindow, wxFrame)
 		EVT_CLOSE(makWindow::OnCloseWindow)
 				EVT_MENU(wxID_OPEN, makWindow::OnOpen)
 						EVT_MENU(wxID_EXIT, makWindow::OnQuit)
-								EVT_MENU(wxID_CLOSE, makWindow::OnOpen)
 										EVT_MENU(wxID_ABOUT, makWindow::OnAbout)
 												EVT_MENU(wxID_HELP, makWindow::OnHelp)
 														wxEND_EVENT_TABLE();

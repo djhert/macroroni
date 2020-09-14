@@ -14,6 +14,9 @@ bool mApp::OnInit() {
 
 	_instance = this;
 
+	// Needed so Windows won't freak
+	MainWin = NULL;
+
 	Tray = new makTray();
 
 #if defined(__WXOSX__) && wxOSX_USE_COCOA

@@ -17,7 +17,7 @@ void mImage::OnPaint(wxPaintEvent &WXUNUSED(event)) {
 	wxPaintDC dc(this);
 
 	if (_bitmap != NULL && _bitmap->IsOk())
-		dc.DrawBitmap(*_bitmap, wxPoint(0, 0), false);
+		dc.DrawBitmap(*_bitmap, wxPoint(0, 0), true);
 }
 
 void mImage::SetBitmap(wxBitmap *bmp) {

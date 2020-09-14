@@ -1,5 +1,10 @@
 # Changelog
 
+### v0.0.9 - 08/14/2020
+- Fixed Windows Icons
+- Main Window is now created when shown, destroyed when hidden
+  - This should reduce overall memory when UI is not shown
+
 ### v0.0.8 - 08/13/2020
 - Fixed Mac icons
 - Built main interface v1

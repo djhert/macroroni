@@ -1,0 +1,9 @@
+aaaaaaaa ICON "macroroni_128.ico"
+macroroni_32 ICON "macroroni_32.ico"
+
+delete_22 ICON "delete_22.ico"
+save_22 ICON "save_22.ico"
+add_22 ICON "add_22.ico"
+
+#define wxUSE_NO_MANIFEST 0
+#include <wx/msw/wx.rc>
