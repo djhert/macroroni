@@ -18,9 +18,18 @@ bool mApp::OnInit() {
 
 	Tray = new makTray();
 
-#if defined(__WXOSX__) && wxOSX_USE_COCOA
+#ifdef __WXOSX__
 	Dock = new makTray(wxTBI_DOCK);
 #endif
+
+	if (_file.IsEmpty())
+		_file = wxGetHomeDir() + "/.mak";
+#ifdef _DEBUG
+	std::cout << "Using: " << _file << std::endl;
+#endif
+
+	if (Storage.Set(_file))
+		Storage.Empty != Storage.Open();
 
 	return true;
 }
@@ -28,7 +37,23 @@ bool mApp::OnInit() {
 void mApp::Quit() {
 	MainWin->Destroy();
 	Tray->Destroy();
-#if defined(__WXOSX__) && wxOSX_USE_COCOA
+#ifdef __WXOSX__
 	Dock->Destroy();
 #endif
 }
+
+#ifndef __WXMSW__
+void mApp::OnInitCmdLine(wxCmdLineParser &parser) {
+	parser.SetDesc(cmdLineDesc);
+	parser.SetSwitchChars(wxT("-"));
+}
+
+bool mApp::OnCmdLineParsed(wxCmdLineParser &parser) {
+	if (parser.Parse() == -1)
+		return false;
+
+	parser.Found(wxT("f"), &_file);
+
+	return true;
+}
+#endif

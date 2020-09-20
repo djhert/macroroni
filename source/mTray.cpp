@@ -2,12 +2,12 @@
 
 makTray::makTray(wxTaskBarIconType iconType) :
 		wxTaskBarIcon(iconType) {
-#if defined(__WXOSX__) && wxOSX_USE_COCOA
+#ifdef __WXOSX__
 	if (iconType == wxTBI_DOCK)
-		SetIcon(wxICON(macroroni_128), _("Makroroni and Keys"));
+		SetIcon(wxICON(macroroni_128), _("Macroroni and Keys"));
 	else
 #endif
-		SetIcon(wxICON(macroroni_32), _("Makroroni and Keys"));
+		SetIcon(wxICON(macroroni_32), _("Macroroni and Keys"));
 }
 
 wxBEGIN_EVENT_TABLE(makTray, wxTaskBarIcon)

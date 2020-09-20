@@ -97,7 +97,8 @@ wxBEGIN_EVENT_TABLE(makWindow, wxFrame)
 						EVT_MENU(wxID_EXIT, makWindow::OnQuit)
 								EVT_MENU(wxID_ABOUT, makWindow::OnAbout)
 										EVT_MENU(wxID_HELP, makWindow::OnHelp)
-												wxEND_EVENT_TABLE();
+												EVT_LISTBOX(2000, makWindow::OnListSelect)
+														wxEND_EVENT_TABLE();
 
 void makWindow::OnOpen(wxCommandEvent &WXUNUSED(event)) {
 	wxFileDialog *dg = new wxFileDialog(this, _("Choose a file"),
@@ -116,7 +117,7 @@ void makWindow::OnQuit(wxCommandEvent &event) {
 }
 
 void makWindow::OnAbout(wxCommandEvent &WXUNUSED(event)) {
-	new mAbout(new wxBitmap(macroroni_128_xpm), this, "About MaK");
+	mAbout(new wxBitmap(macroroni_128_xpm), this, "About MaK");
 }
 
 void makWindow::OnHelp(wxCommandEvent &WXUNUSED(event)) {
@@ -127,13 +128,24 @@ void makWindow::OnCloseWindow(wxCloseEvent &WXUNUSED(event)) {
 	ShowWindow(false);
 }
 
+void makWindow::OnListSelect(wxCommandEvent &WXUNUSED(event)) {
+	if (_tbox->IsModified())
+		std::cout << "Line modified!\n";
+	_tbox->Clear();
+	_sbox->Clear();
+	wxString _sel = _macros->GetString(_macros->GetSelection());
+	wxString _text = "";
+	mApp::App()->Storage.actions.Get(_sel, _text);
+	_tbox->ChangeValue(_text);
+	_tbox->DiscardEdits();
+	_sbox->ChangeValue(_sel);
+}
+
 void makWindow::ShowWindow(const bool &show) {
 	if (show) {
-		wxArrayString str = wxArrayString();
-		for (int i = 0; i < 100; i++) {
-			str.Add(_(".macro" + std::to_string(i)));
-		}
-		_macros->InsertItems(str, 0);
+		if (!mApp::App()->Storage.Empty)
+			_macros->InsertItems(mApp::App()->Storage.actions.GetActions(), 0);
+
 	} else {
 		_sbox->Clear();
 		_macros->DeselectAll();

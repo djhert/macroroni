@@ -1,0 +1,55 @@
+# mak example configuration file
+
+# Any line beginning with a # will be
+# treated as a comment
+# Newlines are also ignored (obviously)
+
+# Command Definitions must consist of 4 :
+# characters. Lines that are not comments
+# and do not start with a : will cause an
+# error; except when parsing a multiline string 
+
+####
+# Index:
+####
+##
+### Definitions:
+# key = the keyboard combination for an action
+# value = the action text/command to perform
+# var = the variable for the action
+##
+### Available commands:
+# ::  == String Replacement
+# :r: == String Replacement
+##
+
+####
+# String replacement
+### ::key::value
+## Any instance of 'key' that
+## is typed will be replaced 
+## with 'value'
+::.hello::Hello!
+
+## Raw mode compatibility with
+## AHK, no difference from above
+### :r:key::value
+:r:.world::World!
+
+## Multiline replacers are also
+## possible by wrapping value in {}
+#### NOTE: Multiline MUST begin with
+#### { after the definition, and end
+#### with } as it's own end line
+### ::key::{ --OR-- :r:key::{
+### line1
+### line2
+### } 
+::.multiline::{
+More text
+line2
+}
+:r:.multiline2::{
+another multiline
+line2
+}

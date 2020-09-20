@@ -1,7 +1,7 @@
 #ifndef _mABOUT_HPP_
 #define _mABOUT_HPP_
 
-#include "wx/wx.h"
+#include <wx/wx.h>
 
 #include "version.h"
 
